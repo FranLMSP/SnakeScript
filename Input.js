@@ -13,27 +13,27 @@ class Input
 		{
 			case 8:
 			case 74:
-				this.keyBack();
+				this.keyBack(function(){});
 				break;
 			case 13: //ENTER
 			case 75: //K
-				this.keyAction();
+				this.keyAction(function(){});
 				break;
 			case 38: //UP Arrow
 			case 87: //W
-				this.keyUp();
+				this.keyUp(function(){});
 				break;
 			case 40: //Down Arrow
 			case 83: //S
-				this.keyDown();
+				this.keyDown(function(){});
 				break;
 			case 37: //Left Arrow
 			case 65: //A
-				this.keyLeft();
+				this.keyLeft(function(){});
 				break;
 			case 39: //Right Arrow
 			case 68: //D
-				this.keyRight();
+				this.keyRight(function(){});
 				break;
 			default:
 				console.log(event.keyCode);
@@ -46,36 +46,36 @@ class Input
 		alert('AAA!');
 	}
 
-	keyUp()
+	keyUp(cb)
 	{
-		alert('Key UP From Input Class');
+		cb();
 	}
 
-	keyDown()
+	keyDown(cb)
 	{
-		alert('Key DOWN From Input Class');
-
-	}
-
-	keyLeft()
-	{
-		alert('Key LEFT From Input Class');
+		cb();
 
 	}
 
-	keyRight()
+	keyLeft(cb)
 	{
-		alert('Key RIGHT From Input Class');
+		cb();
 
 	}
 
-	keyAction()
+	keyRight(cb)
 	{
-		alert('action key pressed');
+		cb();
+
 	}
 
-	keyBack()
+	keyAction(cb)
 	{
-		alert('back key pressed');
+		cb();
+	}
+
+	keyBack(cb)
+	{
+		cb();
 	}
 }
