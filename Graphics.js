@@ -3,6 +3,9 @@ class Graphics
 	constructor(width, height, background)
 	{
 		this.canvas = document.getElementById('canv');
+		// this.canvas.onwheel = function(event){
+		// 	event.preventDefault();
+		// };
 		this.canvas.width = width;
 		this.canvas.height = height;
 		this.layout = this.canvas.getContext('2d');
