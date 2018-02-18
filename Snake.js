@@ -10,11 +10,7 @@ class Snake
 	move(move_body = true)
 	{
 		if(move_body && this.body.points.length>0)
-		{
 			this.moveBody();
-		}
-		// else
-		// 	setTimeout(function(){},100);
 
 		switch(this.direction)
 		{
@@ -123,16 +119,8 @@ class Snake
 		if (this.body.last===null)
 			this.body.last = 0;
 		this.body.points.push({x: this.head.x, y: this.head.y, flag:'i\'m the position '+this.body.points.length});
-		
-
-		// this.move(false);
-		// this.body.last = 0;
-
-
-
-
-		console.log(this.body.points);
-		console.log('Last is '+this.body.last);
+		this.move();
+		setTimeout(function(){},100);
 	}
 
 	hurt()
@@ -140,6 +128,18 @@ class Snake
 		this.body.points = removeArrayPosition(this.body.points,this.body.length-1);
 	}
 
+	selfEat()
+	{
+		if(this.body.points.length>3)
+		{
+			for(let i=0; i<this.body.points.length ; i++)
+			{
+				if(this.body.points[i].x == this.head.x && this.body.points[i].y == this.head.y )
+					return true;
+			}
+		}
+		return false;
+	}
 
 }
 
