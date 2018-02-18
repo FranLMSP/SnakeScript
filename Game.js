@@ -39,13 +39,15 @@ class Game
 
 	update()
 	{
+		this.inputs.beginFrame();
+
 		this.snake.move();
 		if(this.snake.eat(this.food))
 			this.food.generate(this.snake);
 
 		if(this.snake.selfEat())
 		{
-			alert('You loose!');
+			alert('You lose!');
 			this.snake = new Snake(0,0);
 			this.food = new Food();
 			this.food.generate(this.snake);
@@ -53,6 +55,7 @@ class Game
 
 		}
 		this.draw();
+
 	}
 
 	draw()
