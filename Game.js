@@ -5,6 +5,9 @@ class Game
 	{
 		this.graphics = new Graphics(640,480,'#263238');
 		this.snake = new Snake(0,0);
+
+		this.food = new Food();
+		this.food.generate(this.snake);
 		
 		this.inputs = new Input();
 		this.setActions();
@@ -37,6 +40,18 @@ class Game
 	update()
 	{
 		this.snake.move();
+		if(this.snake.eat(this.food))
+		{
+			this.food.generate(this.snake);
+		}
+		this.draw();
+	}
+
+	draw()
+	{
+		this.graphics.drawBackground();
+		this.graphics.drawFood(this.food);
 		this.graphics.drawSnake(this.snake);
+
 	}
 }

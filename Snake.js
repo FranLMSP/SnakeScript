@@ -4,13 +4,17 @@ class Snake
 	{
 		this.direction = direction;
 		this.head = {x:x, y:y}
-		this.body = [];
+		this.body = {points: [], last: null};
 	}
 
-	move()
+	move(move_body = true)
 	{
-		let pos = this.body.length-1;
-		this.body[pos] = this.head;
+		if(move_body && this.body.points.length>0)
+		{
+			this.moveBody();
+		}
+		// else
+		// 	setTimeout(function(){},100);
 
 		switch(this.direction)
 		{
@@ -28,6 +32,16 @@ class Snake
 				break;
 			default:
 		}
+	}
+
+	eat(food)
+	{
+		if(food.position.x == this.head.x && food.position.y == this.head.y)
+		{
+			this.growUp();
+			return true;
+		}
+		return false;
 	}
 
 	moveUp()
@@ -86,14 +100,44 @@ class Snake
 
 	}
 
+	moveBody()
+	{
+		if(this.body.last!==null)
+		{
+			this.body.points[this.body.last].x = this.head.x;
+			this.body.points[this.body.last].y = this.head.y;
+
+			this.body.last--;
+			if(this.body.last<0)
+			{
+				// alert('Last is 0 now');
+				this.body.last = this.body.points.length-1;
+			}
+		}
+
+	}
+
 	growUp()
 	{
-		this.body.push(this.head);
+
+		if (this.body.last===null)
+			this.body.last = 0;
+		this.body.points.push({x: this.head.x, y: this.head.y, flag:'i\'m the position '+this.body.points.length});
+		
+
+		// this.move(false);
+		// this.body.last = 0;
+
+
+
+
+		console.log(this.body.points);
+		console.log('Last is '+this.body.last);
 	}
 
 	hurt()
 	{
-		this.body = removeArrayPosition(this.body,this.body.length-1);
+		this.body.points = removeArrayPosition(this.body.points,this.body.length-1);
 	}
 
 

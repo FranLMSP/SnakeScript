@@ -27,12 +27,16 @@ class Graphics
 
 	drawSnake(snake)
 	{
-		this.drawBackground();
 		this.drawRect(snake.head.x*20,snake.head.y*20,20,20,'#FFFFFF');
-		for (let i = 0; i<snake.body.length ; i++)
+		for (let i = 0; i<snake.body.points.length ; i++)
 		{		
-			this.drawRect(snake.body[i].x*20,snake.body[i].y*20,20,20,'#FFFFFF');
+			this.drawRect(snake.body.points[i].x*20,snake.body.points[i].y*20,20,20,'#FFFFFF');
 		}
+	}
+
+	drawFood(food)
+	{
+		this.drawRect((food.position.x*20)+5,(food.position.y*20)+5,10,10,'#b71c1c')
 	}
 
 
